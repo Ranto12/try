@@ -6,7 +6,7 @@ const ButtonShare = () => {
     const imgUrl =
       "https://storage.googleapis.com/crm-go/REVAMP-LOYALTY/714c1700-288e-41d5-9dcf-e9e215bdf496.jpg";
       const shareText = "bla bla bla";
-      const url: 'https://try-three-pearl.vercel.app/'
+      const url = 'https://try-three-pearl.vercel.app/'
 
     try {
       const response = await fetch(imgUrl);
@@ -17,7 +17,7 @@ const ButtonShare = () => {
         await navigator.share({
           files: [file],
           title: shareText,
-          url: url
+          url: url,
         });
       }
     } catch (error) {
