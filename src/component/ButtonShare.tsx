@@ -5,7 +5,7 @@ const ButtonShare = () => {
   const handleShare = async () => {
     const imgUrl =
       "https://storage.googleapis.com/crm-go/REVAMP-LOYALTY/714c1700-288e-41d5-9dcf-e9e215bdf496.jpg";
-      const shareText = "bla bla bla";
+      const shareText = `Yuk ikut event:  ${process.env.NEXT_PUBLIC_URL}/event/detail/1`;
       const url = 'https://try-three-pearl.vercel.app/'
 
     try {
