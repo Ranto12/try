@@ -4,7 +4,6 @@ const ButtonShare = () => {
   const handleShare = async () => {
     const imgUrl =
       "https://storage.googleapis.com/crm-go/REVAMP-LOYALTY/714c1700-288e-41d5-9dcf-e9e215bdf496.jpg";
-    const shareText = `Yuk ikut event <br/> ${process.env.NEXT_PUBLIC_URL}/event/detail/1`;
 
     try {
       const response = await fetch(imgUrl);
@@ -15,13 +14,13 @@ const ButtonShare = () => {
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({
             files: [file],
-            text: shareText,
-            // url: shareText,
+            text: `Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
+            // url,
           });
         } else {
           await navigator.share({
-            text: shareText,
-            // url: shareText,
+            text: `Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
+            // url,
           });
         }
       } else {
