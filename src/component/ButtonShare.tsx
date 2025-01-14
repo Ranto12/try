@@ -14,12 +14,12 @@ const ButtonShare = () => {
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({
             files: [file],
-            text: `Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
+            title: `Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
             // url,
           });
         } else {
           await navigator.share({
-            text: `Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
+            title: `Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
             // url,
           });
         }
