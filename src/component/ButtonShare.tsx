@@ -15,12 +15,14 @@ const ButtonShare = () => {
           await navigator.share({
             files: [file],
             title: `Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
-            // url,
+            text: `Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
+            url: `Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
           });
         } else {
           await navigator.share({
             title: `Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
-            // url,
+            text: `Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
+            url: `Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
           });
         }
       } else {
