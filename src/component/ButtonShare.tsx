@@ -9,9 +9,10 @@ const ButtonShare = () => {
       const response = await fetch(imgUrl);
       const blob = await response.blob();
       const file = new File([blob], "event-image.jpg", { type: blob.type });
+      const text = "Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1"
 
       if (navigator.share) {
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        if (navigator.canShare && navigator.canShare({ files: [file], text: text, title: text, url: text })) {
           await navigator.share({
             files: [file],
             title: `Lihat detail event kami di ${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
