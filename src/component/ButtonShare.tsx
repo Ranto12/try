@@ -2,20 +2,32 @@
 
 const ButtonShare = () => {
   const handleShare = async () => {
+    const imgUrl =
+      "https://storage.googleapis.com/crm-go/REVAMP-LOYALTY/714c1700-288e-41d5-9dcf-e9e215bdf496.jpg";
     const shareText = `Yuk ikut event: ${process.env.NEXT_PUBLIC_URL}/event/detail/1`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/event/detail/1`;
 
     try {
-      if (navigator.share) {
+      // Fetch the image and convert to a blob
+      const response = await fetch(imgUrl);
+      const blob = await response.blob();
+      const file = new File([blob], "event-image.jpg", { type: blob.type });
+
+      // Check if the browser supports sharing with files
+      if (
+        navigator.share &&
+        navigator.canShare({ files: [file], text: shareText, url })
+      ) {
         await navigator.share({
-          title: "Bagikan Event",
+          files: [file],
           text: shareText,
-          url: `${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
+          url,
         });
       } else {
-        alert("Fitur berbagi tidak didukung di browser ini.");
+        alert("Web Share API tidak mendukung berbagi dengan file di perangkat ini.");
       }
     } catch (error) {
-      console.error("Error sharing:", error);
+      console.error("Error saat mencoba berbagi:", error);
     }
   };
 
