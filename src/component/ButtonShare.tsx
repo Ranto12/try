@@ -1,27 +1,24 @@
-
-"use client"
+"use client";
 
 const ButtonShare = () => {
   const handleShare = async () => {
-    const imgUrl =
-      "https://storage.googleapis.com/crm-go/REVAMP-LOYALTY/714c1700-288e-41d5-9dcf-e9e215bdf496.jpg";
-      const shareText = `Yuk ikut event:  https://try-three-pearl.vercel.app//event/detail/1`;
-    try {
-      const response = await fetch(imgUrl);
-      const blob = await response.blob();
-      const file = new File([blob], "event-image.jpg", { type: blob.type });
+    const shareText = `Yuk ikut event: ${process.env.NEXT_PUBLIC_URL}/event/detail/1`;
 
-      if (navigator.share && navigator.canShare({ files: [file], title: shareText, url: shareText  })) {
+    try {
+      if (navigator.share) {
         await navigator.share({
-          files: [file],
-          title: shareText,
-          url: shareText,
+          title: "Bagikan Event",
+          text: shareText,
+          url: `${process.env.NEXT_PUBLIC_URL}/event/detail/1`,
         });
+      } else {
+        alert("Fitur berbagi tidak didukung di browser ini.");
       }
     } catch (error) {
-      throw error;
+      console.error("Error sharing:", error);
     }
   };
+
   return <button onClick={handleShare}>Share Event</button>;
 };
 
