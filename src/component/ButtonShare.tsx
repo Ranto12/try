@@ -15,13 +15,13 @@ const ButtonShare = () => {
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({
             files: [file],
-            text: "acumalaka",
-            url: shareText,
+            text: shareText,
+            // url: shareText,
           });
         } else {
           await navigator.share({
             text: shareText,
-            url: shareText,
+            // url: shareText,
           });
         }
       } else {
