@@ -8,23 +8,26 @@ const ButtonShare = () => {
     const url = `${process.env.NEXT_PUBLIC_URL}/event/detail/1`;
 
     try {
-      // Fetch the image and convert to a blob
       const response = await fetch(imgUrl);
       const blob = await response.blob();
       const file = new File([blob], "event-image.jpg", { type: blob.type });
 
-      // Check if the browser supports sharing with files
-      if (
-        navigator.share &&
-        navigator.canShare({ files: [file], text: shareText, url })
-      ) {
-        await navigator.share({
-          files: [file],
-          text: shareText,
-          url,
-        });
+      if (navigator.share) {
+        // Check if the device supports sharing with files
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            url,
+          });
+        } else {
+          // Share only text and URL if files are not supported
+          await navigator.share({
+            text: shareText,
+            url,
+          });
+        }
       } else {
-        alert("Web Share API tidak mendukung berbagi dengan file di perangkat ini.");
+        alert("Web Share API tidak didukung di perangkat ini.");
       }
     } catch (error) {
       console.error("Error saat mencoba berbagi:", error);
